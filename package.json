@@ -19,11 +19,11 @@
     "axios": "0.21.1",
     "bulmaswatch": "^0.8.1",
     "esbuild-wasm": "0.8.27",
+    "immer": "^9.0.5",
     "jscodeshift": "0.11.0",
     "localforage": "^1.9.0",
     "monaco-editor": "0.24.0",
     "monaco-jsx-highlighter": "0.0.15",
-    "prettier": "^2.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "7.2.2",
@@ -57,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
   }
 }
