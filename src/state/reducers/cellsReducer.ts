@@ -41,7 +41,7 @@ const reducer = produce(
         // after immer refactoring
         state.data[id].content = content;
         // just syntax error revision
-        return;
+        return state;
       case ActionType.DELETE_CELL:
         // return state;
         // replace using immer
@@ -49,7 +49,7 @@ const reducer = produce(
         // state.order to check order is not equal to payload, then assign result to state.order
         state.order = state.order.filter((id) => id !== action.payload);
 
-        return;
+        return state;
       case ActionType.MOVE_CELL:
         const { direction } = action.payload;
         // targetIndex is the compared target of index which direction is up ro down from index
@@ -58,13 +58,13 @@ const reducer = produce(
 
         // check when targetIndex does not exist
         if (targetIndex < 0 || targetIndex > state.order.length - 1) {
-          return;
+          return state;
         }
 
         state.order[index] = state.order[targetIndex];
         state.order[targetIndex] = action.payload.id;
 
-        return;
+        return state;
       case ActionType.INSERT_CELL_BEFORE:
         const cell: Cell = {
           content: '',
