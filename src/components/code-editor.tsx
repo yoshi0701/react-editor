@@ -21,36 +21,40 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
       onChange(getValue());
     });
 
-    monacoEditor.getModel()?.updateOptions({ tabSize: 2 })
+    monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
 
-    const highlighter = new Highlighter (
+    const highlighter = new Highlighter(
       // @ts-ignore
-      window.manaco,
+      window.monaco,
       codeShift,
       monacoEditor
     );
-
     highlighter.highLightOnDidChangeModelContent(
       () => {},
       () => {},
       undefined,
-      () => {},
+      () => {}
     );
   };
 
   const onFormatClick = () => {
+    // get current value from editor
     const unformatted = editorRef.current.getModel().getValue();
 
-    const formatted = prettier.format(unformatted, {
-      parser: 'babel',
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: true
-    }).replace(/\n$/, '');
+    // format that value
+    const formatted = prettier
+      .format(unformatted, {
+        parser: 'babel',
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+      })
+      .replace(/\n$/, '');
 
+    // set the formatted value back in the editor
     editorRef.current.setValue(formatted);
-  }
+  };
 
   return (
     <div className="editor-wrapper">
@@ -78,8 +82,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         }}
       />
     </div>
-
-  )
+  );
 };
 
 export default CodeEditor;
